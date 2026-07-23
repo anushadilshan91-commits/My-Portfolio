@@ -2,8 +2,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaLinkedinIn, FaWhatsapp, FaGithub, FaEnvelope } from "react-icons/fa";
-import ContactForm from "../components/ContactForm";
-import ChatBot from "@/components/ChatBot";
 
 // Typewriter Animation
 function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?: number; pause?: number }) {
@@ -42,7 +40,6 @@ function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?:
     </span>
   );
 }
-
 
 export default function Home() {
   return (
@@ -144,22 +141,45 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="py-20 space-y-6 border-t border-slate-800/60">
           <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
-            <span className="text-teal-400"></span> About Me 
+            About Me 
           </h2>
           <div className="bg-[#161b22] border border-slate-800/80 p-6 rounded-xl space-y-4 text-slate-300 leading-relaxed text-sm">
-  <p>
-    I'm currently pursuing a <strong className="text-slate-100 font-semibold">BSc (Hons) in Cyber Security</strong> while actively refining my offensive and defensive security skills through hands-on platforms like <strong className="text-slate-100 font-semibold">Hack The Box</strong> and <strong className="text-slate-100 font-semibold">TryHackMe</strong>. I care about the complete lifecycle of secure software: from threat modeling and underlying cryptography to system hardening and resilient architecture.
-  </p>
-  <p>
-    Beyond security testing, I build full-stack utilities and secure backend logic using <strong className="text-slate-100 font-semibold">Python</strong> and <strong className="text-slate-100 font-semibold">Java</strong>, alongside modern web interfaces powered by <strong className="text-slate-100 font-semibold">Next.js</strong>—aiming to bridge the gap between robust cybersecurity engineering and clean user experiences.
-  </p>
-</div>
+            <p>
+              I'm currently pursuing a{" "}
+              <strong className="text-slate-100 font-semibold">
+                BSc (Hons) in Cyber Security
+              </strong>{" "}
+              while actively refining my offensive and defensive security skills
+              through hands-on platforms like{" "}
+              <strong className="text-slate-100 font-semibold">
+                Hack The Box
+              </strong>{" "}
+              and{" "}
+              <strong className="text-slate-100 font-semibold">
+                TryHackMe
+              </strong>
+              . I care about the complete lifecycle of secure software: from
+              threat modeling and underlying cryptography to system hardening and
+              resilient architecture.
+            </p>
+            <p>
+              Beyond security testing, I build full-stack utilities and secure
+              backend logic using{" "}
+              <strong className="text-slate-100 font-semibold">Python</strong>{" "}
+              and{" "}
+              <strong className="text-slate-100 font-semibold">Java</strong>,
+              alongside modern web interfaces powered by{" "}
+              <strong className="text-slate-100 font-semibold">Next.js</strong>
+              —aiming to bridge the gap between robust cybersecurity engineering
+              and clean user experiences.
+            </p>
+          </div>
         </section>
 
         {/* Projects Section */}
         <section id="projects" className="py-20 space-y-8 border-t border-slate-800/60">
           <h2 className="text-xl font-bold text-slate-200 tracking-tight flex items-center gap-2">
-            <span className="text-teal-400"></span> Projects & Work
+            Projects & Work
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -191,14 +211,11 @@ export default function Home() {
 
         {/* Contact Footer */}
         <section id="contact" className="border-t border-slate-800/60 py-20 text-center space-y-6">
-        <div className="text-center space-y-3">
           <h2 className="text-2xl font-bold text-slate-100">Let's Connect</h2>
           <p className="text-sm text-slate-400 max-w-sm mx-auto">
             Open to discussing security engineering, network defense, or technical software build collaborations.
           </p>
-        </div>
-        {/* Contact Form Component */}
-        <ContactForm />
+
           {/* Glowing Icon Buttons */}
           <div className="flex justify-center gap-5 pt-2">
             {/* LinkedIn */}
@@ -246,10 +263,8 @@ export default function Home() {
             </a>
           </div>
         </section>
-      </main>
 
-      {/* ChatBot Component */}
-      <ChatBot />
+      </main>
     </div>
   );
 }
