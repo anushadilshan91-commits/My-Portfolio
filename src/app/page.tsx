@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
-import { FaLinkedinIn, FaWhatsapp, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaLinkedinIn, FaWhatsapp, FaGithub, FaEnvelope, FaDownload } from "react-icons/fa";
 
 // Typewriter Animation
 function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?: number; pause?: number }) {
@@ -121,6 +121,13 @@ export default function Home() {
             </p>
             
             <div className="flex gap-4 pt-2">
+              <a
+                href="/CV.pdf"
+                download="Anusha_Dilshan_CV.pdf"
+                className="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold rounded text-xs transition-colors shadow-lg shadow-teal-950/40"
+                >
+                  <span>Download CV</span>
+                </a>
               <a 
                 href="#projects" 
                 className="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold rounded text-xs transition-colors shadow-lg shadow-teal-950/40"
