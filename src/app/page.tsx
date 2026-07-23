@@ -2,8 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaLinkedinIn, FaWhatsapp, FaGithub, FaEnvelope, FaDownload } from "react-icons/fa";
+import ChatBot from "./ChatBot";
 
-// Typewriter Animation
+// Typewriter Animation Component
 function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?: number; pause?: number }) {
   const [displayedText, setDisplayedText] = React.useState("");
   const [isDeleting, setIsDeleting] = React.useState(false);
@@ -43,16 +44,19 @@ function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?:
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0d1117] text-slate-100 font-sans selection:bg-teal-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#0d1117] text-slate-100 font-sans selection:bg-teal-500 selection:text-slate-950 scroll-smooth">
       
       {/* Navigation Header */}
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#0d1117]/80 border-b border-slate-800/60">
+      <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#0d1117]/80 border-b border-slate-800/60 transition-all duration-300">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-md font-mono font-bold text-teal-400">Anusha Dilshan</span>
+          <span className="text-md font-mono font-bold text-teal-400 hover:opacity-80 transition-opacity">
+            Anusha Dilshan
+          </span>
           <div className="flex gap-6 text-sm font-medium text-slate-400">
-            <a href="#about" className="hover:text-teal-400 transition-colors">About</a>
-            <a href="#projects" className="hover:text-teal-400 transition-colors">Projects</a>
-            <a href="#contact" className="hover:text-teal-400 transition-colors">Contact</a>
+            <a href="#about" className="hover:text-teal-400 transition-colors duration-300">About</a>
+            <a href="#education" className="hover:text-teal-400 transition-colors duration-300">Education</a>
+            <a href="#projects" className="hover:text-teal-400 transition-colors duration-300">Projects</a>
+            <a href="#contact" className="hover:text-teal-400 transition-colors duration-300">Contact</a>
           </div>
         </div>
       </nav>
@@ -66,19 +70,19 @@ export default function Home() {
           className="min-h-[calc(100vh-4rem)] flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 py-12"
         >
           {/* Profile Picture Container with Orbiting Buttons */}
-          <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0 group">
             
             {/* Glow backdrop */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500/40 to-emerald-500/40 blur-md"></div>
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500/40 to-emerald-500/40 blur-md transition-all duration-500 group-hover:blur-lg"></div>
 
             {/* Circular Image Wrapper */}
-            <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-slate-700/80 bg-[#161b22] shadow-2xl">
+            <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-slate-700/80 bg-[#161b22] shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
               <Image
                 src="/anusha.jpg"
                 alt="Anusha Dilshan"
                 fill
                 sizes="(max-width: 768px) 256px, 320px"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-105"
                 style={{ objectPosition: 'center top' }}
                 priority
               />
@@ -87,7 +91,7 @@ export default function Home() {
             {/* Orbiting Button 1: About */}
             <a
               href="#about"
-              className="absolute -top-2 -right-1 z-10 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="absolute -top-2 -right-1 z-10 px-3.5 py-1.5 bg-[#161b22]/70 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_20px_rgba(45,212,191,0.5)]"
             >
               About
             </a>
@@ -95,7 +99,7 @@ export default function Home() {
             {/* Orbiting Button 2: Projects */}
             <a
               href="#projects"
-              className="absolute top-1/2 -left-16 -translate-y-1/2 z-10 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="absolute top-1/2 -left-16 -translate-y-1/2 z-10 px-3.5 py-1.5 bg-[#161b22]/70 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_20px_rgba(45,212,191,0.5)]"
             >
               Projects
             </a>
@@ -103,7 +107,7 @@ export default function Home() {
             {/* Orbiting Button 3: Contact */}
             <a
               href="#contact"
-              className="absolute -bottom-2 -right-1 z-10 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="absolute -bottom-2 -right-1 z-10 px-3.5 py-1.5 bg-[#161b22]/70 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_20px_rgba(45,212,191,0.5)]"
             >
               Contact
             </a>
@@ -120,23 +124,26 @@ export default function Home() {
               I am a cybersecurity student and software developer. I design systems focused on data privacy, local encryption utility development, and clean UI components.
             </p>
             
-            <div className="flex gap-4 pt-2">
+            <div className="flex flex-wrap gap-4 pt-2">
               <a
                 href="/CV.pdf"
                 download="Anusha_Dilshan_CV.pdf"
-                className="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold rounded text-xs transition-colors shadow-lg shadow-teal-950/40"
-                >
-                  <span>Download CV</span>
-                </a>
+                className="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold rounded text-xs transition-all duration-300 ease-in-out hover:-translate-y-0.5 shadow-lg hover:shadow-teal-500/20 flex items-center gap-2"
+              >
+                <FaDownload className="text-xs" />
+                <span>Download CV</span>
+              </a>
+
               <a 
                 href="#projects" 
-                className="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold rounded text-xs transition-colors shadow-lg shadow-teal-950/40"
+                className="px-5 py-2.5 border border-slate-700 hover:border-teal-500/50 text-slate-300 hover:text-teal-400 font-medium rounded text-xs transition-all duration-300 ease-in-out hover:-translate-y-0.5"
               >
                 Explore Work
               </a>
+
               <a 
                 href="#contact" 
-                className="px-5 py-2.5 border border-slate-700 hover:border-slate-500 text-slate-300 font-medium rounded text-xs transition-colors"
+                className="px-5 py-2.5 border border-slate-700 hover:border-teal-500/50 text-slate-300 hover:text-teal-400 font-medium rounded text-xs transition-all duration-300 ease-in-out hover:-translate-y-0.5"
               >
                 Get in Touch
               </a>
@@ -146,11 +153,11 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 space-y-6 border-t border-slate-800/60">
+        <section id="about" className="py-20 space-y-6 border-t border-slate-800/60 scroll-mt-16">
           <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
             About Me 
           </h2>
-          <div className="bg-[#161b22] border border-slate-800/80 p-6 rounded-xl space-y-4 text-slate-300 leading-relaxed text-sm">
+          <div className="bg-[#161b22] border border-slate-800/80 hover:border-slate-700/80 p-6 rounded-xl space-y-4 text-slate-300 leading-relaxed text-sm transition-all duration-300">
             <p>
               I'm currently pursuing a{" "}
               <strong className="text-slate-100 font-semibold">
@@ -183,17 +190,80 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Education Section */}
+        <section id="education" className="py-20 space-y-6 border-t border-slate-800/60 scroll-mt-16">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+              Education
+            </h2>
+            <p className="text-xs font-mono font-medium text-teal-400 mt-1 uppercase tracking-wider">
+              Academic background
+            </p>
+          </div>
+
+          {/* Education Details Wrapper */}
+          <div className="relative pl-6 border-l border-slate-800 space-y-6">
+            <div className="space-y-3">
+              {/* Date / Status */}
+              <span className="text-xs font-mono text-teal-400 font-medium">
+                2025 — PRESENT
+              </span>
+
+              {/* Title & University */}
+              <h3 className="text-xl font-bold text-slate-100">
+                BSc (Hons) in Cyber Security
+              </h3>
+              <p className="text-sm text-slate-400 font-medium">
+                SLTC Research University, Sri Lanka
+              </p>
+
+              {/* Coursework Description */}
+              <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">
+                Curriculum focuses on offensive and defensive security principles, core 
+                networking, and foundational software systems. Coursework covers{" "}
+                <strong className="text-slate-100 font-semibold">
+                  Network Architecture & Protocols
+                </strong>,{" "}
+                <strong className="text-slate-100 font-semibold">
+                  Applied Cryptography
+                </strong>, and{" "}
+                <strong className="text-slate-100 font-semibold">
+                  System Administration
+                </strong>. The program emphasizes hands-on threat analysis, secure programming practices, and operating system mechanics.
+              </p>
+
+              {/* Skill Tags */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                {[
+                  "Cyber Security",
+                  "Computer Networks",
+                  "System Security",
+                  "Cryptography",
+                  "Ethical Hacking",
+                ].map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="text-xs font-mono text-slate-300 bg-[#161b22] border border-slate-800 px-3 py-1.5 rounded-md hover:border-teal-500/50 hover:text-teal-400 transition-all duration-300 ease-in-out hover:-translate-y-0.5"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Projects Section */}
-        <section id="projects" className="py-20 space-y-8 border-t border-slate-800/60">
-          <h2 className="text-xl font-bold text-slate-200 tracking-tight flex items-center gap-2">
+        <section id="projects" className="py-20 space-y-8 border-t border-slate-800/60 scroll-mt-16">
+          <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
             Projects & Work
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Card 1 */}
-            <div className="bg-[#161b22] border border-slate-800/80 hover:border-teal-500/40 p-6 rounded-xl transition-all hover:shadow-lg hover:shadow-teal-950/20 group">
+            <div className="bg-[#161b22] border border-slate-800/80 hover:border-teal-500/50 p-6 rounded-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-950/30 group">
               <span className="text-xs font-mono text-teal-400 bg-teal-950/40 px-2.5 py-1 rounded border border-teal-900/30">Security</span>
-              <h3 className="text-lg font-bold text-slate-100 mt-3 group-hover:text-teal-300 transition-colors">File Encryption Vault</h3>
+              <h3 className="text-lg font-bold text-slate-100 mt-3 group-hover:text-teal-300 transition-colors duration-300">File Encryption Vault</h3>
               <p className="mt-2 text-xs text-slate-400 leading-relaxed">
                 A Python-based utility utilizing symmetric cryptography primitives to secure local directories with a master passkey framework.
               </p>
@@ -203,9 +273,9 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-[#161b22] border border-slate-800/80 hover:border-teal-500/40 p-6 rounded-xl transition-all hover:shadow-lg hover:shadow-teal-950/20 group">
+            <div className="bg-[#161b22] border border-slate-800/80 hover:border-teal-500/50 p-6 rounded-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-950/30 group">
               <span className="text-xs font-mono text-teal-400 bg-teal-950/40 px-2.5 py-1 rounded border border-teal-900/30">System Logic</span>
-              <h3 className="text-lg font-bold text-slate-100 mt-3 group-hover:text-teal-300 transition-colors">Hotel Management System</h3>
+              <h3 className="text-lg font-bold text-slate-100 mt-3 group-hover:text-teal-300 transition-colors duration-300">Hotel Management System</h3>
               <p className="mt-2 text-xs text-slate-400 leading-relaxed">
                 An application architecture designed to organize administrative shifts, track transaction logs, and manage active states.
               </p>
@@ -217,7 +287,7 @@ export default function Home() {
         </section>
 
         {/* Contact Footer */}
-        <section id="contact" className="border-t border-slate-800/60 py-20 text-center space-y-6">
+        <section id="contact" className="border-t border-slate-800/60 py-20 text-center space-y-6 scroll-mt-16">
           <h2 className="text-2xl font-bold text-slate-100">Let's Connect</h2>
           <p className="text-sm text-slate-400 max-w-sm mx-auto">
             Open to discussing security engineering, network defense, or technical software build collaborations.
@@ -231,7 +301,7 @@ export default function Home() {
               target="_blank" 
               rel="noreferrer" 
               aria-label="LinkedIn"
-              className="w-12 h-12 shrink-0 aspect-square rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 inline-flex items-center justify-center text-lg transition-all duration-300 hover:border-teal-400 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="w-12 h-12 shrink-0 aspect-square rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 inline-flex items-center justify-center text-lg transition-all duration-300 ease-in-out hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.5)]"
             >
               <FaLinkedinIn />
             </a>
@@ -242,7 +312,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.6)]"
+              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 ease-in-out hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.5)]"
             >
               <FaGithub />
             </a>
@@ -253,7 +323,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 hover:border-emerald-400 hover:text-emerald-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(52,211,153,0.6)]"
+              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 ease-in-out hover:border-emerald-400 hover:text-emerald-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(52,211,153,0.5)]"
             >
               <FaWhatsapp />
             </a>
@@ -264,7 +334,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="Email"
-              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-lg transition-all duration-300 hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.6)]"
+              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-lg transition-all duration-300 ease-in-out hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.5)]"
             >
               <FaEnvelope />
             </a>
@@ -272,6 +342,9 @@ export default function Home() {
         </section>
 
       </main>
+
+      {/* Floating ChatBot Component */}
+      <ChatBot />
     </div>
   );
 }
