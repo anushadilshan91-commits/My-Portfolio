@@ -2,7 +2,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaLinkedinIn, FaWhatsapp, FaGithub, FaEnvelope } from "react-icons/fa";
-
+import ContactForm from "../components/ContactForm";
+import ChatBot from "@/components/ChatBot";
 
 // Typewriter Animation
 function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?: number; pause?: number }) {
@@ -13,22 +14,18 @@ function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?:
     let timer: NodeJS.Timeout;
 
     if (!isDeleting && displayedText.length < text.length) {
-      // 1. Typing forward
       timer = setTimeout(() => {
         setDisplayedText(text.slice(0, displayedText.length + 1));
       }, speed);
     } else if (!isDeleting && displayedText.length === text.length) {
-      // 2. Pause when full text is typed, then start deleting
       timer = setTimeout(() => {
         setIsDeleting(true);
       }, pause);
     } else if (isDeleting && displayedText.length > 0) {
-      // 3. Deleting backward (faster speed)
       timer = setTimeout(() => {
         setDisplayedText(text.slice(0, displayedText.length - 1));
       }, speed / 2);
     } else if (isDeleting && displayedText.length === 0) {
-      // 4. Reset loop
       setIsDeleting(false);
     }
 
@@ -45,6 +42,7 @@ function Typewriter({ text, speed = 450, pause = 1500 }: { text: string; speed?:
     </span>
   );
 }
+
 
 export default function Home() {
   return (
@@ -67,10 +65,9 @@ export default function Home() {
         
         {/* Full-Screen Hero Section */}
         <section 
-          id="about" 
+          id="hero" 
           className="min-h-[calc(100vh-4rem)] flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 py-12"
         >
-          
           {/* Profile Picture Container with Orbiting Buttons */}
           <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
             
@@ -93,7 +90,7 @@ export default function Home() {
             {/* Orbiting Button 1: About */}
             <a
               href="#about"
-              className="absolute -top-2 -right-1 z-7 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="absolute -top-2 -right-1 z-10 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
             >
               About
             </a>
@@ -101,7 +98,7 @@ export default function Home() {
             {/* Orbiting Button 2: Projects */}
             <a
               href="#projects"
-              className="absolute top-1/2 -left-16 -translate-y-1/2 z-7 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="absolute top-1/2 -left-16 -translate-y-1/2 z-10 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
             >
               Projects
             </a>
@@ -109,7 +106,7 @@ export default function Home() {
             {/* Orbiting Button 3: Contact */}
             <a
               href="#contact"
-              className="absolute -bottom-2 -right-1 z-7 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+              className="absolute -bottom-2 -right-1 z-10 px-3 py-1.5 bg-[#161b22]/60 backdrop-blur-md border border-teal-500/50 hover:border-teal-400 text-teal-400 text-xs font-mono rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:border-teal-300 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
             >
               Contact
             </a>
@@ -119,7 +116,7 @@ export default function Home() {
           {/* Text Content & Bio */}
           <div className="space-y-5 max-w-xl text-left">
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-100">
-              Hi, I'm <Typewriter text= "Anusha..." speed={450} />
+              Hi, I'm <Typewriter text="Anusha..." speed={450} />
             </h1>
             
             <p className="text-base text-slate-300 font-normal leading-relaxed">
@@ -142,6 +139,21 @@ export default function Home() {
             </div>
           </div>
 
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-20 space-y-6 border-t border-slate-800/60">
+          <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+            <span className="text-teal-400"></span> About Me 
+          </h2>
+          <div className="bg-[#161b22] border border-slate-800/80 p-6 rounded-xl space-y-4 text-slate-300 leading-relaxed text-sm">
+  <p>
+    I'm currently pursuing a <strong className="text-slate-100 font-semibold">BSc (Hons) in Cyber Security</strong> while actively refining my offensive and defensive security skills through hands-on platforms like <strong className="text-slate-100 font-semibold">Hack The Box</strong> and <strong className="text-slate-100 font-semibold">TryHackMe</strong>. I care about the complete lifecycle of secure software: from threat modeling and underlying cryptography to system hardening and resilient architecture.
+  </p>
+  <p>
+    Beyond security testing, I build full-stack utilities and secure backend logic using <strong className="text-slate-100 font-semibold">Python</strong> and <strong className="text-slate-100 font-semibold">Java</strong>, alongside modern web interfaces powered by <strong className="text-slate-100 font-semibold">Next.js</strong>—aiming to bridge the gap between robust cybersecurity engineering and clean user experiences.
+  </p>
+</div>
         </section>
 
         {/* Projects Section */}
@@ -179,62 +191,65 @@ export default function Home() {
 
         {/* Contact Footer */}
         <section id="contact" className="border-t border-slate-800/60 py-20 text-center space-y-6">
+        <div className="text-center space-y-3">
           <h2 className="text-2xl font-bold text-slate-100">Let's Connect</h2>
           <p className="text-sm text-slate-400 max-w-sm mx-auto">
             Open to discussing security engineering, network defense, or technical software build collaborations.
           </p>
-
+        </div>
+        {/* Contact Form Component */}
+        <ContactForm />
           {/* Glowing Icon Buttons */}
           <div className="flex justify-center gap-5 pt-2">
-             
-             {/* LinkedIn */}
-            
+            {/* LinkedIn */}
             <a 
-               href="https://www.linkedin.com/in/anusha-dilshan-926234331/" 
-               target="_blank" 
-               rel="noreferrer" 
-               aria-label="LinkedIn"
-               className="w-12 h-12 shrink-0 aspect-square rounded-full border bprder-slate-700/80 bg-[#161b22] text-slate-300 inline-flex items-center justify-center text-lg transition-all duration-300 hover:border-teal-400 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]">
-                < FaLinkedinIn />
-              
-                </a>
-             {/* GitHub */}
-    <a
-      href="https://github.com/anushadilshan91-commits"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="GitHub"
-      className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.6)]"
-    >
-      <FaGithub />
-    </a>
+              href="https://www.linkedin.com/in/anusha-dilshan-926234331/" 
+              target="_blank" 
+              rel="noreferrer" 
+              aria-label="LinkedIn"
+              className="w-12 h-12 shrink-0 aspect-square rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 inline-flex items-center justify-center text-lg transition-all duration-300 hover:border-teal-400 hover:shadow-[0_0_40px_rgba(45,212,191,0.6)]"
+            >
+              <FaLinkedinIn />
+            </a>
 
-    {/* WhatsApp */}
-    <a
-      href="https://wa.me/94704039395"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="WhatsApp"
-      className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 hover:border-emerald-400 hover:text-emerald-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(52,211,153,0.6)]"
-    >
-      <FaWhatsapp />
-    </a>
+            {/* GitHub */}
+            <a
+              href="https://github.com/anushadilshan91-commits"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.6)]"
+            >
+              <FaGithub />
+            </a>
 
-     {/* Envelope */}
-    <a
-      href="mailto:anushadilshan91@gmail.com"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Email"
-      className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-lg transition-all duration-300 hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.6)]"
-    >
-      <FaEnvelope />
-    </a>
-  
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/94704039395"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp"
+              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-xl transition-all duration-300 hover:border-emerald-400 hover:text-emerald-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(52,211,153,0.6)]"
+            >
+              <FaWhatsapp />
+            </a>
+
+            {/* Envelope */}
+            <a
+              href="mailto:anushadilshan91@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Email"
+              className="w-12 h-12 rounded-full border border-slate-700/80 bg-[#161b22] text-slate-300 flex items-center justify-center text-lg transition-all duration-300 hover:border-teal-400 hover:text-teal-400 hover:scale-110 hover:shadow-[0_0_25px_rgba(45,212,191,0.6)]"
+            >
+              <FaEnvelope />
+            </a>
           </div>
         </section>
-
       </main>
+
+      {/* ChatBot Component */}
+      <ChatBot />
     </div>
   );
 }
